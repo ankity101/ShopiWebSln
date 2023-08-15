@@ -35,6 +35,10 @@ namespace ShopiWeb.Controllers
                 {
                     ModelState.AddModelError("name", "Display Order And Name Can't Be Same");
                 }
+                if(category.Name.ToLower() == "test")
+                {
+                    ModelState.AddModelError("", "Test Is an Invalid Value");
+                }
                 if (ModelState.IsValid)
                 {
                     dbContext.Add(category);
@@ -48,5 +52,64 @@ namespace ShopiWeb.Controllers
                 throw new Exception("Error Adding Category");
             }
         }
+
+
+        public IActionResult Edit(int? id)
+        {
+            if(id==null || id==0)
+            {
+                return NotFound();
+            }
+            var category = dbContext.Categories.FirstOrDefault(c => c.Id == id);
+            if (category == null)
+                return NotFound();
+            return View(category);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(Category? category)
+        {
+            if(category.Id==null || category.Id==0)
+            {
+                return View();
+            }
+            dbContext.Categories.Update(category);
+            dbContext.SaveChanges();
+            return RedirectToAction("Index");
+        }
+        [HttpGet]
+        public IActionResult Delete(int id)
+        {
+            if(id==0)
+            {
+                return NotFound();
+            }
+           Category category =  dbContext.Categories.FirstOrDefault(x => x.Id == id);
+            if (category == null)
+                return NotFound();
+            return View(category);
+        }
+
+        [HttpPost]
+        public IActionResult Delete(Category category)
+        {
+            
+            try
+            {
+                if(category==null)
+                {
+                    return View("Index");
+                }
+                dbContext.Categories.Remove(category);
+                dbContext.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception("Error Deleting Category,Please Contact ");
+            }
+        }
+
     }
 }
