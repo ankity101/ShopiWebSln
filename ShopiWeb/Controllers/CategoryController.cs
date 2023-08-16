@@ -43,6 +43,7 @@ namespace ShopiWeb.Controllers
                 {
                     dbContext.Add(category);
                     dbContext.SaveChanges();
+                    TempData["success"] = "Category Created Successfully";
                     return RedirectToAction("Index");
                 }
                 return View();
@@ -75,6 +76,7 @@ namespace ShopiWeb.Controllers
             }
             dbContext.Categories.Update(category);
             dbContext.SaveChanges();
+            TempData["success"] = "Category Updated Successfully";
             return RedirectToAction("Index");
         }
         [HttpGet]
@@ -102,6 +104,7 @@ namespace ShopiWeb.Controllers
                 }
                 dbContext.Categories.Remove(category);
                 dbContext.SaveChanges();
+                TempData["success"] = "Category Deleted Successfully";
                 return RedirectToAction("Index");
             }
             catch (Exception ex)

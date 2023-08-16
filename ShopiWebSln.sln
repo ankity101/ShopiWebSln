@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33403.182
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShopiWeb", "ShopiWeb\ShopiWeb.csproj", "{63EBB61A-B68A-472A-90C0-20E919634824}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShopiWeb", "ShopiWeb\ShopiWeb.csproj", "{63EBB61A-B68A-472A-90C0-20E919634824}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShopiWebRazor_Temp", "ShopiWebRazor_Temp\ShopiWebRazor_Temp.csproj", "{C15631AD-6454-4651-8B31-342EF4DF4CEC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{63EBB61A-B68A-472A-90C0-20E919634824}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{63EBB61A-B68A-472A-90C0-20E919634824}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{63EBB61A-B68A-472A-90C0-20E919634824}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C15631AD-6454-4651-8B31-342EF4DF4CEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C15631AD-6454-4651-8B31-342EF4DF4CEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C15631AD-6454-4651-8B31-342EF4DF4CEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C15631AD-6454-4651-8B31-342EF4DF4CEC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
