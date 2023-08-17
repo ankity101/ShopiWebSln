@@ -1,0 +1,65 @@
+﻿@page
+@model ShopiWebRazor_Temp.Pages.Categories.IndexModel
+
+    
+<div class="container">
+    <div class="row pt-4 pb-2">
+
+    <div class="col-6">
+        <h2 class="text-primary">
+            Category List
+        </h2>
+
+    </div>
+
+    <div class="col-6 text-end">
+        <a  asp-page="/categories/Create" class="btn btn-primary">
+            <i class="bi bi-plus-circle-fill"></i> Create New Category
+        </a>
+    </div>
+    </div>
+
+<table class="table table-bordered table-striped"> 
+    <thead>
+       <tr>
+        <th>
+            Category
+        </th>
+        <th>
+            Display Order
+        </th>
+        <th>
+            Edit
+        </th>
+        <th>
+           Delete
+        </th>
+    </tr>
+        </thead>
+
+    <tbody>
+
+            @foreach (var category in Model.CategoryList.OrderBy(u => u.DisplayOrder))
+    {
+        <tr>
+            <td>
+                @category.Name
+            </td>
+            <td>
+                @category.DisplayOrder
+            </td>
+            <td>
+                        <a class="btn btn-primary" asp-page="/categories/edit"  asp-route-id="@category.Id"><i class="bi bi-pencil-square"></i> Edit</a>
+            </td>
+                    <td>
+                        <a class="btn btn-primary btn-danger" asp-page="/categories/delete"   asp-route-id="@category.Id"><i class="bi bi-trash"></i> Delete</a>
+                    </td>
+            
+        </tr>
+         
+    }
+    </tbody>
+    
+</table> 
+
+</div>
