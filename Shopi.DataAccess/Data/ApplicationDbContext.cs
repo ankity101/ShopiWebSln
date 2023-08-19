@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using ShopiWeb.Models.Models;
+using Shopi.Models;
 
-namespace ShopiWeb.Data
+namespace Shopi.DataAccess.Data
 {
     public class ApplicationDbContext : DbContext
     {

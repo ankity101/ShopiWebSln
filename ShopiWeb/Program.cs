@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
-using ShopiWeb.Data;
-
+using Shopi.DataAccess.Data;
+ 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.

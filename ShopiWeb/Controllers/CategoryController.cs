@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using ShopiWeb.Data;
-using ShopiWeb.Models.Models;
-using System.Reflection.Metadata.Ecma335;
+using Shopi.DataAccess.Data;
+using Shopi.Models;
 
 namespace ShopiWeb.Controllers
 {

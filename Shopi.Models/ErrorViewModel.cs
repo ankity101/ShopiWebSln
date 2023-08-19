@@ -1,4 +1,4 @@
-namespace ShopiWeb.Models
+namespace Shopi.Models
 {
     public class ErrorViewModel
     {

@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using ShopiWeb.Models;
+using Shopi.Models;
 using System.Diagnostics;
 
 namespace ShopiWeb.Controllers
