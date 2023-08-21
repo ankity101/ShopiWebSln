@@ -5,15 +5,14 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Shopi.DataAccess.Data;
- 
 
 #nullable disable
 
 namespace Shopi.DataAccess.Migrations
-{   
+{
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230811180244_AddingCategoryTable")]
-    partial class AddingCategoryTable
+    [Migration("20230819140141_AddingMigrationForNewSetUp")]
+    partial class AddingMigrationForNewSetUp
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,7 +24,7 @@ namespace Shopi.DataAccess.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("ShopiWeb.Models.Models.Category", b =>
+            modelBuilder.Entity("Shopi.Models.Category", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -38,11 +37,26 @@ namespace Shopi.DataAccess.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
 
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            DisplayOrder = 1,
+                            Name = "Action"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            DisplayOrder = 2,
+                            Name = "History"
+                        });
                 });
 #pragma warning restore 612, 618
         }

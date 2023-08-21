@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Shopi.DataAccess.Data;
+using Shopi.DataAccess.Repository;
+using Shopi.DataAccess.Repository.IRepository;
 using Shopi.Models;
 
 namespace ShopiWeb.Controllers
@@ -7,18 +9,18 @@ namespace ShopiWeb.Controllers
     public class CategoryController : Controller
     {
 
-        private readonly ApplicationDbContext dbContext;
-        public CategoryController(ApplicationDbContext dbContext)
+        private readonly ICategoryRepository categoryRepo;
+        public CategoryController(ICategoryRepository categoryRepo)
         {
-            this.dbContext = dbContext;
+            this.categoryRepo = categoryRepo;
         }
         public IActionResult Index()
         {
 
-            List<Category>objCategoryList =  dbContext.Categories.ToList();
+            List<Category>objCategoryList = categoryRepo.GetAll().ToList();
             return View(objCategoryList);
         }
-
+         
         public IActionResult Create()
         {
             return View();
@@ -39,8 +41,8 @@ namespace ShopiWeb.Controllers
                 }
                 if (ModelState.IsValid)
                 {
-                    dbContext.Add(category);
-                    dbContext.SaveChanges();
+                    categoryRepo.Add(category);
+                    categoryRepo.Save();
                     TempData["success"] = "Category Created Successfully";
                     return RedirectToAction("Index");
                 }
@@ -59,7 +61,7 @@ namespace ShopiWeb.Controllers
             {
                 return NotFound();
             }
-            var category = dbContext.Categories.FirstOrDefault(c => c.Id == id);
+            var category = categoryRepo.Get(u=> u.Id==id);
             if (category == null)
                 return NotFound();
             return View(category);
@@ -72,8 +74,8 @@ namespace ShopiWeb.Controllers
             {
                 return View();
             }
-            dbContext.Categories.Update(category);
-            dbContext.SaveChanges();
+            categoryRepo.Update(category);
+            categoryRepo.Save();
             TempData["success"] = "Category Updated Successfully";
             return RedirectToAction("Index");
         }
@@ -84,7 +86,7 @@ namespace ShopiWeb.Controllers
             {
                 return NotFound();
             }
-           Category category =  dbContext.Categories.FirstOrDefault(x => x.Id == id);
+            Category category = categoryRepo.Get(u => u.Id == id);
             if (category == null)
                 return NotFound();
             return View(category);
@@ -100,8 +102,8 @@ namespace ShopiWeb.Controllers
                 {
                     return View("Index");
                 }
-                dbContext.Categories.Remove(category);
-                dbContext.SaveChanges();
+                categoryRepo.Remove(category);
+                categoryRepo.Save();
                 TempData["success"] = "Category Deleted Successfully";
                 return RedirectToAction("Index");
             }
